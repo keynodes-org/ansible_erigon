@@ -1,0 +1,46 @@
+---
+- name: Erigon - create group
+  ansible.builtin.group:
+    name: "{{ erigon_group }}"
+    state: present
+
+- name: Erigon - user configuration
+  ansible.builtin.user:
+    name: "{{ erigon_user }}"
+    group: "{{ erigon_group }}"
+    append: true
+    shell: /usr/sbin/nologin
+    create_home: false
+
+- name: Erigon - create directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: "0755"
+    owner: "{{ erigon_user }}"
+    group: "{{ erigon_group }}"
+  with_items:
+    - "{{ erigon_dir_base }}"
+    - "{{ erigon_dir_data }}"
+    - "{{ erigon_dir_config }}"
+    - "{{ erigon_dir_log }}"
+
+- name: Erigon - install required apt packages
+  ansible.builtin.apt:
+    name:
+      - gcc
+    update_cache: true
+
+# https://github.com/erigontech/erigon?tab=readme-ov-file#erigon-crashes-due-to-kernel-allocation-limits
+- name: Erigon - set required sysctl params
+  ansible.posix.sysctl:
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    sysctl_set: true
+    state: present
+    reload: true
+  with_items:
+    - name: vm.overcommit_memory
+      value: 1
+    - name: vm.max_map_count
+      value: 8388608

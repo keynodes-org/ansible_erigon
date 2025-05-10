@@ -1,0 +1,15 @@
+[Unit]
+Description=Ethereum Erigon Node
+Documentation=https://docs.erigon.tech
+After=network.target
+
+[Service]
+User={{ erigon_user }}
+Group={{ erigon_group }}
+ExecStart={{ erigon_binary_path }} --config {{ erigon_dir_config }}/config.yml
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target
