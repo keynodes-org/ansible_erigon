@@ -1,0 +1,280 @@
+---
+# @var erigon_user:description: >
+# Username for the erigon node.
+erigon_user: "erigon"
+
+# @var erigon_group:description: >
+# Group for running the erigon node.
+erigon_group: "erigon"
+
+# @var erigon_general_owner:description: >
+# General owner for erigon system files.
+erigon_general_owner: root
+
+# @var erigon_dir_base:description: >
+# Base directory for erigon installation.
+erigon_dir_base: "/opt/erigon"
+
+# @var erigon_dir_data:description: >
+# Directory for erigon data storage.
+erigon_dir_data: "{{ erigon_dir_base }}/data"
+
+# @var erigon_dir_config:description: >
+# Directory for erigon configuration files.
+erigon_dir_config: "{{ erigon_dir_base }}/config"
+
+# @var erigon_dir_log:description: >
+# Directory for erigon log files.
+erigon_dir_log: "{{ erigon_dir_base }}/logs"
+
+# @var erigon_ethash_dagdir:description: >
+# Set the directory to store the ethash mining DAGs.
+erigon_dir_ethash_dag: "{{ erigon_dir_data }}/erigon-ethash"
+
+# @var erigon_binary_download_url:description: >
+# URL to download the erigon binary.
+erigon_binary_download_url: "https://github.com/erigontech/erigon/releases/download/v3.0.3/erigon_v3.0.3_linux_amd64.tar.gz"
+
+# @var erigon_binary_path:description: >
+# Path to install the erigon binary.
+erigon_dir_binary: "/usr/local/bin"
+
+# @var erigon_binary_path:description: >
+# Path the erigon binary.
+erigon_binary_path: "{{ erigon_dir_binary }}/erigon"
+
+# @var erigon_dir_systemd:description: >
+# Systemd service directory for erigon.
+erigon_dir_systemd: "/lib/systemd/system"
+
+# @var erigon_log_dir_disable:description: >
+# Disable disk logging.
+erigon_log_dir_disable: false
+
+# @var erigon_log_dir_prefix:description: >
+# Set the file name prefix for logs stored to disk.
+erigon_log_dir_prefix: ""
+
+# @var erigon_log_dir_verbosity:description: >
+# Set the log verbosity for logs stored to disk.
+erigon_log_dir_verbosity: "info"
+
+# @var erigon_systemd_service_name:description: >
+# Systemd service name for erigon.
+erigon_systemd_service_name: "erigon"
+
+# @var erigon_jwt_secret_path:description: >
+# jwt token path for erigon.
+erigon_jwt_secret_path: "{{ erigon_dir_config }}/jwt.hex"
+
+# @var erigon_log_level:description: >
+# Logging verbosity level.
+erigon_log_level: "info"
+
+# @var erigon_log_level:description: >
+# Force reinstall erigon binary.
+erigon_reinstall: false
+
+# @var erigon_chain_name:description: >
+# Erigon chain name.
+erigon_chain_name: sepolia
+
+# @var erigon_database_verbosity:description: >
+# Enabling internal db logs. Very high verbosity levels may require recompile db. Default: 2, means warning.
+erigon_database_verbosity: 2
+
+# @var erigon_log_json:description: >
+# Format console logs with JSON.
+erigon_log_json: false
+
+# @var erigon_log_console_json:description: >
+# Format console logs with JSON.
+erigon_log_console_json: false
+
+# @var erigon_log_dir_json:description: >
+# Format file logs with JSON.
+erigon_log_dir_json: false
+
+# @var erigon_verbosity:description: >
+# Set the log level for console logs.
+erigon_verbosity: "info"
+
+# @var erigon_log_console_verbosity:description: >
+# Set the log level for console logs.
+erigon_log_console_verbosity: "info"
+
+# @var erigon_log_delays:description: >
+# Enable block delay logging.
+erigon_log_delays: false
+
+# @var erigon_prune_mode:description: >
+# Choose a pruning preset: archive, full, or minimal.
+erigon_prune_mode: "full"
+
+# @var erigon_prune_distance:description: >
+# Keep state history for the latest N blocks (default: everything).
+erigon_prune_distance: 0
+
+# @var erigon_prune_distance_blocks:description: >
+# Keep block history for the latest N blocks (default: everything).
+erigon_prune_distance_blocks: 0
+
+# @var erigon_batch_size:description: >
+# Set the batch size for the execution stage.
+erigon_batch_size: "512M"
+
+# @var erigon_bodies_cache:description: >
+# Limit the cache for block bodies.
+erigon_bodies_cache: 268435456
+
+# @var erigon_private_api_addr:description: >
+# Set the internal grpc API address.
+erigon_private_api_addr: "127.0.0.1:9090"
+
+# @var erigon_private_api_ratelimit:description: >
+# Set the amount of requests the server can handle simultaneously.
+erigon_private_api_ratelimit: 31872
+
+# @var erigon_txpool_api_addr:description: >
+# Set the txPool api network address (default: use value of --private.api.addr).
+erigon_txpool_api_addr: ""
+
+# @var erigon_txpool_disable:description: >
+# Experimental external pool and block producer. Disabling internal txpool and block producer.
+erigon_txpool_disable: false
+
+# @var erigon_txpool_pricebump:description: >
+# Price bump percentage to replace an already existing transaction.
+erigon_txpool_pricebump: 10
+
+# @var erigon_txpool_pricelimit:description: >
+# Minimum gas price (fee cap) limit to enforce for acceptance into the pool.
+erigon_txpool_pricelimit: 1
+
+# @var erigon_txpool_locals:description: >
+# Comma separated accounts to treat as locals (no flush, priority inclusion).
+erigon_txpool_locals: ""
+
+# @var erigon_txpool_nolocals:description: >
+# Disables price exemptions for locally submitted transactions.
+erigon_txpool_nolocals: false
+
+# @var erigon_txpool_accountslots:description: >
+# Set the minimum number of executable transaction slots guaranteed per account.
+erigon_txpool_accountslots: 16
+
+# @var erigon_txpool_blobslots:description: >
+# Set the max allowed total number of blobs (within type-3 txs) per account.
+erigon_txpool_blobslots: 48
+
+# @var erigon_txpool_blobpricebump:description: >
+# Price bump percentage to replace existing (type-3) blob transaction.
+erigon_txpool_blobpricebump: 100
+
+# @var erigon_txpool_totalblobpoollimit:description: >
+# Set the total limit of number of all blobs in txs within the txpool.
+erigon_txpool_totalblobpoollimit: 480
+
+# @var erigon_txpool_globalslots:description: >
+# Set the maximum number of executable transaction slots for all accounts.
+erigon_txpool_globalslots: 10000
+
+# @var erigon_txpool_globalbasefeeslots:description: >
+# Set the maximum number of non-executable transactions where only not enough baseFee.
+erigon_txpool_globalbasefeeslots: 30000
+
+# @var erigon_txpool_accountqueue:description: >
+# Set the maximum number of non-executable transaction slots permitted per account.
+erigon_txpool_accountqueue: 64
+
+# @var erigon_txpool_globalqueue:description: >
+# Set the maximum number of non-executable transaction slots for all accounts.
+erigon_txpool_globalqueue: 30000
+
+# @var erigon_txpool_lifetime:description: >
+# Set the maximum amount of time non-executable transaction are queued.
+erigon_txpool_lifetime: "3h0m0s"
+
+# @var erigon_txpool_trace_senders:description: >
+# Set the comma-separated list of addresses, whose transactions will traced in transaction pool with debug printing.
+erigon_txpool_trace_senders: ""
+
+# @var erigon_txpool_commit_every:description: >
+# Set the how often transactions should be committed to the storage.
+erigon_txpool_commit_every: "15s"
+
+# @var erigon_rpc_accesslist:description: >
+# Specify granular (method-by-method) API allowlist.
+erigon_rpc_accesslist: ""
+
+# @var erigon_rpc_allow_unprotected_txs:description: >
+# Allow for unprotected (non-EIP155 signed) transactions to be submitted via RPC.
+erigon_rpc_allow_unprotected_txs: false
+
+# @var erigon_rpc_batch_concurrency:description: >
+# Limit the amount of goroutines to process 1 batch request.
+erigon_rpc_batch_concurrency: 2
+
+# @var erigon_rpc_streaming_disable:description: >
+# Disable json streaming for some heavy endpoints.
+erigon_rpc_streaming_disable: false
+
+# @var erigon_rpc_gascap:description: >
+# Set a cap on gas that can be used in eth_call/estimateGas.
+erigon_rpc_gascap: 50000000
+
+# @var erigon_rpc_batch_limit:description: >
+# Set the maximum number of requests in a batch.
+erigon_rpc_batch_limit: 100
+
+# @var erigon_rpc_returndata_limit:description: >
+# Set the maximum number of bytes returned from eth_call or similar invocations.
+erigon_rpc_returndata_limit: 100000
+
+# @var erigon_rpc_maxgetproofrewindblockcount_limit:description: >
+# Set the max GetProof rewind block count.
+erigon_rpc_maxgetproofrewindblockcount_limit: 100000
+
+# @var erigon_rpc_txfeecap:description: >
+# Set a cap on transaction fee (in ether) that can be sent via the RPC APIs (0 = no cap).
+erigon_rpc_txfeecap: 1
+
+# @var erigon_dev_period:description: >
+# Set the block period to use in developer mode (0 = mine only if transaction pending).
+erigon_dev_period: 0
+
+# @var erigon_maxpeers:description: >
+# Set the maximum number of network peers (network disabled if set to 0).
+erigon_maxpeers: 100
+
+# @var erigon_nodiscover:description: >
+# Disable the peer discovery mechanism (manual peer addition).
+erigon_nodiscover: false
+
+# @var erigon_netrestrict:description: >
+# Restrict network communication to the given IP networks (CIDR masks).
+erigon_netrestrict: ""
+
+# @var erigon_trustedpeers:description: >
+# Set the comma-separated enode URLs which are always allowed to connect, even above the peer limit.
+erigon_trustedpeers: ""
+
+# @var erigon_externalcl:description: >
+# Enables the external consensus layer.
+erigon_externalcl: false
+
+# @var erigon_override_prague:description: >
+# Manually specify the Prague fork time, overriding the bundled setting.
+erigon_override_prague: 0
+
+# @var erigon_pprof:description: >
+# Enable the pprof HTTP server.
+erigon_pprof: false
+
+# @var erigon_metrics:description: >
+# Enable metrics collection and reporting.
+erigon_metrics: false
+
+# @var erigon_diagnostics:description: >
+# Disable diagnostics.
+erigon_diagnostics: false

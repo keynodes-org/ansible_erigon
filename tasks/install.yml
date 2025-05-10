@@ -1,0 +1,34 @@
+---
+- name: Erigon - check erigon is installed
+  ansible.builtin.stat:
+    path: "{{ erigon_binary_path }}"
+  register: erigon_binary
+
+
+- name: Erigon - download and extract binary
+  ansible.builtin.unarchive:
+    src: "{{ erigon_binary_download_url }}"
+    dest: "{{ erigon_dir_binary }}"
+    owner: "{{ erigon_user }}"
+    group: "{{ erigon_group }}"
+    remote_src: true
+    mode: "0755"
+    extra_opts: ['--strip-components=1']
+  when: (not erigon_binary.stat.exists) or (erigon_reinstall)
+
+- name: Erigon - write systemd unit
+  ansible.builtin.template:
+    src: service.j2
+    dest: "{{ erigon_dir_systemd }}/{{ erigon_systemd_service_name }}.service"
+    owner: "{{ erigon_user }}"
+    group: "{{ erigon_group }}"
+    mode: "0644"
+  notify:
+    - erigon - restart
+
+- name: Erigon - ensure service started
+  ansible.builtin.systemd:
+    name: "{{ erigon_systemd_service_name }}"
+    state: started
+    daemon_reload: true
+    enabled: true

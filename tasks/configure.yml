@@ -1,0 +1,22 @@
+---
+- name: Erigon - check if JWT secret exists
+  ansible.builtin.stat:
+    path: "{{ erigon_jwt_secret_path }}"
+  register: jwt_secret_file
+
+- name: Erigon - generate JWT secret if not exists
+  ansible.builtin.command: "openssl rand -hex -out {{ erigon_jwt_secret_path }} 32"
+  args:
+    creates: "{{ erigon_jwt_secret_path }}"
+  when: not jwt_secret_file.stat.exists
+  become: true
+
+- name: Erigon - copy configuration file
+  ansible.builtin.template:
+    src: config.yml.j2
+    dest: "{{ erigon_dir_config }}/config.yml"
+    owner: "{{ erigon_user }}"
+    group: "{{ erigon_group }}"
+    mode: "0644"
+  notify:
+    - erigon - restart

@@ -1,0 +1,17 @@
+---
+- name: Erigon - import prepare tasks
+  ansible.builtin.import_tasks: prepare.yml
+  tags:
+    - erigon-prepare
+    - erigon-config
+    - erigon-install
+
+- name: Erigon - import configure tasks
+  ansible.builtin.import_tasks: configure.yml
+  tags:
+    - erigon-config
+
+- name: Erigon - import install tasks
+  ansible.builtin.import_tasks: install.yml
+  tags:
+    - erigon-install
