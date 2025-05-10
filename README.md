@@ -69,7 +69,7 @@ Ansible role for deploying erigon Ethereum Execution layer node
 ## Auto-generated
 
 - [Defaults](#default-vars)
-  - [erigon_batchSize](#erigon_batchSize)
+  - [erigon_batch_size](#erigon_batch_size)
   - [erigon_binary_download_url](#erigon_binary_download_url)
   - [erigon_binary_path](#erigon_binary_path)
   - [erigon_bodies_cache](#erigon_bodies_cache)
@@ -110,7 +110,7 @@ Ansible role for deploying erigon Ethereum Execution layer node
   - [erigon_prune_distance_blocks](#erigon_prune_distance_blocks)
   - [erigon_prune_mode](#erigon_prune_mode)
   - [erigon_reinstall](#erigon_reinstall)
-  - [erigon_rpc_accessList](#erigon_rpc_accessList)
+  - [erigon_rpc_accesslist](#erigon_rpc_accesslist)
   - [erigon_rpc_allow_unprotected_txs](#erigon_rpc_allow_unprotected_txs)
   - [erigon_rpc_batch_concurrency](#erigon_rpc_batch_concurrency)
   - [erigon_rpc_batch_limit](#erigon_rpc_batch_limit)
@@ -148,14 +148,14 @@ Ansible role for deploying erigon Ethereum Execution layer node
 
 ## Defaults
 
-### erigon_batchSize
+### erigon_batch_size
 
 Set the batch size for the execution stage.
 
 #### Defaults
 
 ```YAML
-erigon_batchSize: 512M
+erigon_batch_size: 512M
 ```
 
 ### erigon_binary_download_url
@@ -546,14 +546,14 @@ erigon_prune_mode: full
 erigon_reinstall: false
 ```
 
-### erigon_rpc_accessList
+### erigon_rpc_accesslist
 
 Specify granular (method-by-method) API allowlist.
 
 #### Defaults
 
 ```YAML
-erigon_rpc_accessList: ''
+erigon_rpc_accesslist: ''
 ```
 
 ### erigon_rpc_allow_unprotected_txs
