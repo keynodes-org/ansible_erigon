@@ -24,15 +24,15 @@ erigon_dir_data: "{{ erigon_dir_base }}/data"
 erigon_dir_config: "{{ erigon_dir_base }}/config"
 
 # @var erigon_dir_log:description: >
-# Directory for erigon log files.
+# Directory for log files.
 erigon_dir_log: "{{ erigon_dir_base }}/logs"
 
-# @var erigon_ethash_dagdir:description: >
-# Set the directory to store the ethash mining DAGs.
+# @var erigon_dir_ethash_dag:description: >
+# Directory to store the ethash mining DAGs.
 erigon_dir_ethash_dag: "{{ erigon_dir_data }}/erigon-ethash"
 
 # @var erigon_binary_download_url:description: >
-# URL to download the erigon binary.
+# URL download the erigon binary.
 erigon_binary_download_url: "https://github.com/erigontech/erigon/releases/download/v3.0.3/erigon_v3.0.3_linux_amd64.tar.gz"
 
 # @var erigon_binary_path:description: >
@@ -40,29 +40,32 @@ erigon_binary_download_url: "https://github.com/erigontech/erigon/releases/downl
 erigon_dir_binary: "/usr/local/bin"
 
 # @var erigon_binary_path:description: >
-# Path the erigon binary.
+# Path to the erigon binary.
 erigon_binary_path: "{{ erigon_dir_binary }}/erigon"
 
 # @var erigon_dir_systemd:description: >
-# Systemd service directory for erigon.
+# Systemd service directory.
 erigon_dir_systemd: "/etc/systemd/system"
 
 # @var erigon_systemd_service_name:description: >
-# Systemd service name for erigon.
+# Systemd service name.
 erigon_systemd_service_name: "erigon"
 
 # @var erigon_jwt_secret_path:description: >
-# jwt token path for erigon.
+# jwt token path.
 erigon_jwt_secret_path: "{{ erigon_dir_config }}/jwt.hex"
 
-# @var erigon_log_level:description: >
+# @var erigon_reinstall:description: >
 # Force reinstall erigon binary.
 erigon_reinstall: false
 
-# @var erigon_private_api_addr:description: >
-# Set the internal grpc API address.
+# @var erigon_http_api:description: >
+# API's offered over the HTTP-RPC interface.
 erigon_http_api: "eth,debug,net,trace,web3,erigon,txpools"
 
+# @var erigon_node_config:description: >
+# Node configuration options.
+# https://docs.erigon.tech/advanced/options
 erigon_node_config:
   - name: chain
     value: sepolia
