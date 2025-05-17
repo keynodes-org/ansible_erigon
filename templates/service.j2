@@ -1,5 +1,5 @@
 [Unit]
-Description=Ethereum Erigon Node
+Description=Erigon - Ethereum EL and CL Node
 Documentation=https://docs.erigon.tech
 After=network.target
 
@@ -7,9 +7,11 @@ After=network.target
 User={{ erigon_user }}
 Group={{ erigon_group }}
 ExecStart={{ erigon_binary_path }} --config {{ erigon_dir_config }}/config.yml
-Restart=on-failure
-RestartSec=10
-TimeoutStopSec=30
+
+
+{% for directive in erigon_extra_systemd_directives | default([]) %}
+{{ directive }}
+{% endfor %}
 
 [Install]
 WantedBy=multi-user.target

@@ -24,12 +24,7 @@
     - "{{ erigon_dir_data }}"
     - "{{ erigon_dir_config }}"
     - "{{ erigon_dir_log }}"
-
-- name: Erigon - install required apt packages
-  ansible.builtin.apt:
-    name:
-      - gcc
-    update_cache: true
+    - "{{ erigon_dir_ethash_dag }}"
 
 # https://github.com/erigontech/erigon?tab=readme-ov-file#erigon-crashes-due-to-kernel-allocation-limits
 - name: Erigon - set required sysctl params
