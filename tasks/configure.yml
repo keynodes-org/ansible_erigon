@@ -19,4 +19,4 @@
     group: "{{ erigon_group }}"
     mode: "0644"
   notify:
-    - erigon - restart
+    - Erigon - restart

@@ -1,124 +1,13 @@
-# Erigon Configuration Template (YAML)
-# This template uses Jinja2 variables that should be populated by Ansible or another templating engine.
-# The values for these keys will be substituted with the corresponding Ansible variables.
-
-# Data Storage
-# Corresponds to --datadir
-datadir: "{{ erigon_dir_data }}"
-# Corresponds to --ethash.dagdir
-ethash.dagdir: "{{ erigon_dir_ethash_dag }}"
-# Corresponds to --database.verbosity
-database.verbosity: "{{ erigon_database_verbosity }}"
-
-# Beacon
-
-# Logging
-# Corresponds to --log.json
-log.json: "{{ erigon_log_json }}"
-# Corresponds to --log.console.json
-log.console.json: "{{ erigon_log_console_json }}"
-# Corresponds to --verbosity and --log.console.verbosity
-log.console.verbosity: "{{ erigon_log_console_verbosity }}"
-# Corresponds to --log.dir.path
-log.dir.path: "{{ erigon_dir_log }}"
-# Corresponds to --log.dir.json
-log.dir.json: "{{ erigon_log_dir_json }}"
-# Corresponds to --log.dir.disable
-log.dir.disable: "{{ erigon_log_dir_disable }}"
-# Corresponds to --log.dir.prefix
-log.dir.prefix: "{{ erigon_log_dir_prefix }}"
-# Corresponds to --log.dir.verbosity
-log.dir.verbosity: "{{ erigon_log_dir_verbosity }}"
-# Corresponds to --log.delays
-log.delays: "{{ erigon_log_delays }}"
-
-# Pruning Presets
-# Corresponds to --prune.mode
-prune.mode: "{{ erigon_prune_mode }}"
-
-### prune.mode=archive
-# Corresponds to --prune.distance
-# prune.distance: "{{ erigon_prune_distance }}"
-# Corresponds to --prune.distance.blocks
-# prune.distance.blocks: "{{ erigon_prune_distance_blocks }}"
-###
-
-# Performance Optimization
-# Corresponds to --batchSize
-batchSize: "{{ erigon_batch_size }}"
-# Corresponds to --bodies.cache
-bodies.cache: "{{ erigon_bodies_cache }}"
-# Corresponds to --private.api.addr
-private.api.addr: "{{ erigon_private_api_addr }}"
-# Corresponds to --private.api.ratelimit
-private.api.ratelimit: "{{ erigon_private_api_ratelimit }}"
-
-# Txpool
-# Corresponds to --txpool.api.addr
-txpool.api.addr: "{{ erigon_txpool_api_addr }}"
-# Corresponds to --txpool.disable
-txpool.disable: "{{ erigon_txpool_disable }}"
-# Corresponds to --txpool.pricebump
-txpool.pricebump: "{{ erigon_txpool_pricebump }}"
-# Corresponds to --txpool.pricelimit
-txpool.pricelimit: "{{ erigon_txpool_pricelimit }}"
-# Corresponds to --txpool.accountslots
-txpool.accountslots: "{{ erigon_txpool_accountslots }}"
-# Corresponds to --txpool.blobslots
-txpool.blobslots: "{{ erigon_txpool_blobslots }}"
-# Corresponds to --txpool.blobpricebump
-txpool.blobpricebump: "{{ erigon_txpool_blobpricebump }}"
-# Corresponds to --txpool.totalblobpoollimit
-txpool.totalblobpoollimit: "{{ erigon_txpool_totalblobpoollimit }}"
-# Corresponds to --txpool.globalslots
-txpool.globalslots: "{{ erigon_txpool_globalslots }}"
-# Corresponds to --txpool.globalbasefeeslots
-txpool.globalbasefeeslots: "{{ erigon_txpool_globalbasefeeslots }}"
-# Corresponds to --txpool.globalqueue
-txpool.globalqueue: "{{ erigon_txpool_globalqueue }}"
-# Corresponds to --txpool.trace.senders
-txpool.trace.senders: "{{ erigon_txpool_trace_senders }}"
-# Corresponds to --txpool.commit.every
-txpool.commit.every: "{{ erigon_txpool_commit_every }}"
-
-# Remote Procedure Call (RPC)
-# Corresponds to --rpc.accessList
-rpc.accessList: "{{ erigon_rpc_accesslist }}"
-# Corresponds to --rpc.allow-unprotected-txs
-rpc.allow-unprotected-txs: "{{ erigon_rpc_allow_unprotected_txs }}"
-# Corresponds to --rpc.batch.concurrency
-rpc.batch.concurrency: "{{ erigon_rpc_batch_concurrency }}"
-# Corresponds to --rpc.streaming.disable
-rpc.streaming.disable: "{{ erigon_rpc_streaming_disable }}"
-# Corresponds to --rpc.gascap
-rpc.gascap: "{{ erigon_rpc_gascap }}"
-# Corresponds to --rpc.batch.limit
-rpc.batch.limit: "{{ erigon_rpc_batch_limit }}"
-# Corresponds to --rpc.returndata.limit
-rpc.returndata.limit: "{{ erigon_rpc_returndata_limit }}"
-# Corresponds to --rpc.txfeecap
-rpc.txfeecap: "{{ erigon_rpc_txfeecap }}"
-
-# Network and Peers
-# Corresponds to --chain
-chain: "{{ erigon_chain_name }}"
-# Corresponds to --dev.period
-dev.period: "{{ erigon_dev_period }}"
-# Corresponds to --maxpeers
-maxpeers: "{{ erigon_maxpeers }}"
-# Corresponds to --nodiscover
-nodiscover: "{{ erigon_nodiscover }}"
-# Corresponds to --netrestrict
-netrestrict: "{{ erigon_netrestrict }}"
-# Corresponds to --trustedpeers
-trustedpeers: "{{ erigon_trustedpeers }}"
-
-# Miscellaneous
-# Corresponds to --externalcl
-externalcl: "{{ erigon_externalcl }}"
-# Corresponds to --override.prague
-override.prague: "{{ erigon_override_prague }}"
-# Corresponds to --pprof
-pprof: "{{ erigon_pprof }}"
-# Corresponds to --metrics
-metrics: "{{ erigon_metrics }}"
+{% if erigon_node_config | length > 0 %}
+{% for config in erigon_node_config %}
+{% if config.value is sameas true or config.value is sameas false %}
+{{ config.name }}: {{ config.value | lower }}
+{% elif config.value is string and config.value | length > 0 %}
+{{ config.name }}: "{{ config.value }}"
+{% elif config.value is number %}
+{{ config.name }}: {{ config.value }}
+{% elif config.value is iterable and config.value is not string %}
+{{ config.name }}: [{% for item in config.value %}"{{ item }}"{% if not loop.last %}, {% endif %}{% endfor %}]
+{% endif %}
+{% endfor %}
+{% endif %}
