@@ -14,15 +14,12 @@ Ansible role for deploying Erigon Ethereum Execution layer node
   - [erigon_dir_ethash_dag](#erigon_dir_ethash_dag)
   - [erigon_dir_log](#erigon_dir_log)
   - [erigon_dir_systemd](#erigon_dir_systemd)
-  - [erigon_ethash_dagdir](#erigon_ethash_dagdir)
   - [erigon_extra_systemd_directives](#erigon_extra_systemd_directives)
   - [erigon_general_owner](#erigon_general_owner)
   - [erigon_group](#erigon_group)
   - [erigon_http_api](#erigon_http_api)
   - [erigon_jwt_secret_path](#erigon_jwt_secret_path)
-  - [erigon_log_level](#erigon_log_level)
   - [erigon_node_config](#erigon_node_config)
-  - [erigon_private_api_addr](#erigon_private_api_addr)
   - [erigon_reinstall](#erigon_reinstall)
   - [erigon_systemd_service_name](#erigon_systemd_service_name)
   - [erigon_user](#erigon_user)
@@ -36,7 +33,7 @@ Ansible role for deploying Erigon Ethereum Execution layer node
 
 ### erigon_binary_download_url
 
-URL to download the erigon binary.
+URL download the erigon binary.
 
 #### Defaults
 
@@ -47,7 +44,7 @@ erigon_binary_download_url:
 
 ### erigon_binary_path
 
-Path the erigon binary.
+Path to the erigon binary.
 
 #### Defaults
 
@@ -95,6 +92,8 @@ erigon_dir_data: '{{ erigon_dir_base }}/data'
 
 ### erigon_dir_ethash_dag
 
+Directory to store the ethash mining DAGs.
+
 #### Defaults
 
 ```YAML
@@ -103,7 +102,7 @@ erigon_dir_ethash_dag: '{{ erigon_dir_data }}/erigon-ethash'
 
 ### erigon_dir_log
 
-Directory for erigon log files.
+Directory for log files.
 
 #### Defaults
 
@@ -113,17 +112,13 @@ erigon_dir_log: '{{ erigon_dir_base }}/logs'
 
 ### erigon_dir_systemd
 
-Systemd service directory for erigon.
+Systemd service directory.
 
 #### Defaults
 
 ```YAML
 erigon_dir_systemd: /etc/systemd/system
 ```
-
-### erigon_ethash_dagdir
-
-Set the directory to store the ethash mining DAGs.
 
 ### erigon_extra_systemd_directives
 
@@ -160,6 +155,8 @@ erigon_group: erigon
 
 ### erigon_http_api
 
+API's offered over the HTTP-RPC interface.
+
 #### Defaults
 
 ```YAML
@@ -168,7 +165,7 @@ erigon_http_api: eth,debug,net,trace,web3,erigon,txpools
 
 ### erigon_jwt_secret_path
 
-jwt token path for erigon.
+jwt token path.
 
 #### Defaults
 
@@ -176,11 +173,9 @@ jwt token path for erigon.
 erigon_jwt_secret_path: '{{ erigon_dir_config }}/jwt.hex'
 ```
 
-### erigon_log_level
-
-Force reinstall erigon binary.
-
 ### erigon_node_config
+
+Node configuration options. https://docs.erigon.tech/advanced/options
 
 #### Defaults
 
@@ -210,11 +205,9 @@ erigon_node_config:
     value: '{{ erigon_dir_ethash_dag }}'
 ```
 
-### erigon_private_api_addr
-
-Set the internal grpc API address.
-
 ### erigon_reinstall
+
+Force reinstall erigon binary.
 
 #### Defaults
 
@@ -224,7 +217,7 @@ erigon_reinstall: false
 
 ### erigon_systemd_service_name
 
-Systemd service name for erigon.
+Systemd service name.
 
 #### Defaults
 

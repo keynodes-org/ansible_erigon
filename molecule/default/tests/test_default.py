@@ -24,7 +24,7 @@ def test_directories(host, directory):
     "file",
     [
         "/usr/local/bin/erigon",
-        "/lib/systemd/system/erigon.service",
+        "/etc/systemd/system/erigon.service",
         "/opt/erigon/config/config.yml"
     ],
 )

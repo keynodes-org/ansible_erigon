@@ -1,68 +1,71 @@
 ---
 # @var erigon_user:description: >
-# Username for the erigon node.
+# Username for the Erigon node.
 erigon_user: "erigon"
 
 # @var erigon_group:description: >
-# Group for running the erigon node.
+# Group for running the Erigon node.
 erigon_group: "erigon"
 
 # @var erigon_general_owner:description: >
-# General owner for erigon system files.
+# General owner of Erigon system files.
 erigon_general_owner: root
 
 # @var erigon_dir_base:description: >
-# Base directory for erigon installation.
+# Base directory for the Erigon installation.
 erigon_dir_base: "/opt/erigon"
 
 # @var erigon_dir_data:description: >
-# Directory for erigon data storage.
+# Directory for Erigon data storage.
 erigon_dir_data: "{{ erigon_dir_base }}/data"
 
 # @var erigon_dir_config:description: >
-# Directory for erigon configuration files.
+# Directory for Erigon configuration files.
 erigon_dir_config: "{{ erigon_dir_base }}/config"
 
 # @var erigon_dir_log:description: >
-# Directory for erigon log files.
+# Directory for log files.
 erigon_dir_log: "{{ erigon_dir_base }}/logs"
 
-# @var erigon_ethash_dagdir:description: >
-# Set the directory to store the ethash mining DAGs.
+# @var erigon_dir_ethash_dag:description: >
+# Directory to store Ethash mining DAGs.
 erigon_dir_ethash_dag: "{{ erigon_dir_data }}/erigon-ethash"
 
 # @var erigon_binary_download_url:description: >
-# URL to download the erigon binary.
+# URL to download the Erigon binary.
 erigon_binary_download_url: "https://github.com/erigontech/erigon/releases/download/v3.0.3/erigon_v3.0.3_linux_amd64.tar.gz"
 
 # @var erigon_binary_path:description: >
-# Path to install the erigon binary.
+# Directory to install the Erigon binary.
 erigon_dir_binary: "/usr/local/bin"
 
 # @var erigon_binary_path:description: >
-# Path the erigon binary.
+# Path to the Erigon binary.
 erigon_binary_path: "{{ erigon_dir_binary }}/erigon"
 
 # @var erigon_dir_systemd:description: >
-# Systemd service directory for erigon.
+# Directory for the systemd service file.
 erigon_dir_systemd: "/etc/systemd/system"
 
 # @var erigon_systemd_service_name:description: >
-# Systemd service name for erigon.
+# Name of the systemd service.
 erigon_systemd_service_name: "erigon"
 
 # @var erigon_jwt_secret_path:description: >
-# jwt token path for erigon.
+# Path to the JWT secret token file.
 erigon_jwt_secret_path: "{{ erigon_dir_config }}/jwt.hex"
 
-# @var erigon_log_level:description: >
-# Force reinstall erigon binary.
+# @var erigon_reinstall:description: >
+# Whether to force reinstallation of the Erigon binary.
 erigon_reinstall: false
 
-# @var erigon_private_api_addr:description: >
-# Set the internal grpc API address.
+# @var erigon_http_api:description: >
+# APIs exposed over the HTTP-RPC interface.
 erigon_http_api: "eth,debug,net,trace,web3,erigon,txpools"
 
+# @var erigon_node_config:description: >
+# Node configuration options.
+# See: https://docs.erigon.tech/advanced/options
 erigon_node_config:
   - name: chain
     value: sepolia
